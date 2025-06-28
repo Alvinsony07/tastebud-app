@@ -1,0 +1,58 @@
+<div class="hero-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 text-center text-lg-start mb-5 mb-lg-0">
+        <h1 class="hero-title">Discover Your Next Favorite Meal</h1>
+        <p class="hero-subtitle">
+          Explore thousands of delicious, easy-to-make recipes from every corner of the world.
+        </p>
+        <div class="hero-buttons">
+          <a routerLink="/recipes" class="btn btn-primary-solid">
+            <i class="fas fa-search me-2"></i>Explore Recipes
+          </a>
+          <a routerLink="/recipes" class="btn btn-secondary-outline">
+            <i class="fas fa-star me-2"></i>Featured Today
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div #heroCarousel id="heroCarousel" class="carousel slide">
+          <div class="carousel-inner">
+            @if (loading) {
+              <div class="carousel-item active">
+                <div class="hero-placeholder">
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              </div>
+            }
+
+            @for (recipe of featuredRecipes; track recipe.idMeal; let i = $index) {
+              <div class="carousel-item" [class.active]="i === 0">
+                <div class="hero-recipe-card" [routerLink]="['/recipe', recipe.idMeal]">
+                  <img [src]="recipe.strMealThumb" class="hero-recipe-img" [alt]="recipe.strMeal">
+                  <div class="card-gradient-overlay"></div>
+                  <div class="hero-recipe-info">
+                    <span class="hero-recipe-category">{{ recipe.strCategory }}</span>
+                    <h5 class="hero-recipe-title">{{ recipe.strMeal }}</h5>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

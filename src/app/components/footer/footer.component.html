@@ -1,0 +1,59 @@
+<footer class="footer text-white pt-5 pb-4">
+  <div class="container">
+    <div class="row">
+      <!-- About & Socials -->
+      <div class="col-lg-5 col-md-12 mb-4">
+        <h5 class="footer-brand">
+          <i class="fas fa-utensils me-2"></i>TasteBud
+        </h5>
+        <p class="footer-text">
+          The modern platform for discovering and sharing your next favorite meal. Built with passion for food lovers.
+        </p>
+        <div class="social-links mt-4">
+          <a href="#" class="social-icon" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+      </div>
+
+      <!-- Spacer -->
+      <div class="col-lg-1"></div>
+
+      <!-- Links Column 1 -->
+      <div class="col-lg-2 col-md-4 col-6 mb-4">
+        <h6 class="footer-heading">TasteBud</h6>
+        <ul class="list-unstyled footer-links">
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/recipes">All Recipes</a></li>
+          <li><a routerLink="/favorites">My Favorites</a></li>
+        </ul>
+      </div>
+
+      <!-- Links Column 2 -->
+      <div class="col-lg-2 col-md-4 col-6 mb-4">
+        <h6 class="footer-heading">Cuisines</h6>
+        <ul class="list-unstyled footer-links">
+          <li><a routerLink="/recipes" [queryParams]="{category: 'Italian'}">Italian</a></li>
+          <li><a routerLink="/recipes" [queryParams]="{category: 'Mexican'}">Mexican</a></li>
+          <li><a routerLink="/recipes" [queryParams]="{category: 'Japanese'}">Japanese</a></li>
+          <li><a routerLink="/recipes" [queryParams]="{category: 'Indian'}">Indian</a></li>
+        </ul>
+      </div>
+
+      <!-- Links Column 3 -->
+      <div class="col-lg-2 col-md-4 col-6 mb-4">
+        <h6 class="footer-heading">Company</h6>
+        <ul class="list-unstyled footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="text-center footer-bottom">
+      &copy; {{ currentYear }} TasteBud. All Rights Reserved.
+    </div>
+  </div>
+</footer>

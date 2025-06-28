@@ -1,0 +1,44 @@
+.filters-section {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--background-light);
+}
+
+.form-select {
+  background-color: var(--background-light);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%238b949e' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+.form-select:focus {
+  border-color: var(--accent-primary);
+}
+
+.btn-clear-filter {
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+.btn-clear-filter:hover {
+  color: var(--text-primary);
+  background-color: var(--border-color);
+}
+
+.results-section {
+  padding: 3rem 0;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-secondary);
+}
+.results-header h3 {
+  color: var(--text-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.pagination-info {
+  font-size: 0.9rem;
+}

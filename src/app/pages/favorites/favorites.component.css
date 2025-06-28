@@ -1,0 +1,65 @@
+.favorites-page {
+  color: var(--text-primary);
+  min-height: 80vh;
+}
+
+.page-title {
+  color: var(--text-heading);
+  font-weight: 700;
+}
+
+.page-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+/* Empty State Styles */
+.empty-state {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.empty-icon {
+  font-size: 5rem;
+  color: var(--border-color);
+  margin-bottom: 2rem;
+}
+
+.empty-title {
+  color: var(--text-heading);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.empty-text {
+  color: var(--text-secondary);
+  max-width: 400px;
+  margin: 0 auto 2rem auto;
+}
+
+/* Re-using the CTA button style from the navbar */
+.btn-cta {
+  background-color: var(--accent-primary);
+  color: white !important;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+.btn-cta:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(88, 166, 255, 0.2);
+}
+
+.btn-outline-danger {
+    border-color: #e5534b;
+    color: #e5534b;
+}
+
+.btn-outline-danger:hover {
+    background-color: #e5534b;
+    color: white;
+}

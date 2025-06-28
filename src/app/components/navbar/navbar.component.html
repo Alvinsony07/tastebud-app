@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container-fluid">
+    <!-- Brand -->
+    <a class="navbar-brand" routerLink="/">
+      <i class="fas fa-utensils"></i>
+      <span>TasteBud</span>
+    </a>
+    
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Nav Links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/recipes" routerLinkActive="active">Recipes</a>
+        </li>
+      </ul>
+
+      <!-- This spacer pushes the right-side items to the end -->
+      <div class="mx-auto"></div>
+
+      <!-- Search & Favorites -->
+      <div class="d-flex align-items-center gap-3">
+        <!-- Search Form -->
+        <form class="navbar-search-form" (ngSubmit)="onSearch()">
+          <div class="input-group">
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Search..."
+              [(ngModel)]="searchQuery"
+              name="searchQuery">
+            
+            <!-- Clear Button 'X' -->
+            @if(searchQuery){
+              <button class="btn btn-clear" type="button" (click)="clearSearch()">
+                <i class="fas fa-times"></i>
+              </button>
+            }
+
+            <!-- Search Icon Button -->
+            <button class="btn btn-search" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </form>
+
+        <!-- Solid Gradient Button -->
+        <a routerLink="/favorites" class="btn-gradient-outline">
+          <i class="fas fa-heart me-2"></i>
+          Favorites
+          @if(favoriteCount > 0){
+            <span class="badge cta-badge ms-2">{{ favoriteCount }}</span>
+          }
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

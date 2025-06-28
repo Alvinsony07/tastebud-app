@@ -1,0 +1,70 @@
+<div class="recipes-page">
+  <!-- Filters Section -->
+  <div class="filters-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- Category Filter -->
+        <div class="col-lg-9">
+          <app-category-filter 
+            (categorySelected)="onCategorySelected($event)"
+            [selectedCategory]="selectedCategory"
+            theme="dark">
+          </app-category-filter>
+        </div>
+        
+        <!-- Sort Dropdown -->
+        <div class="col-lg-3 mt-3 mt-lg-0">
+          <div class="d-flex align-items-center justify-content-lg-end">
+            <select 
+              class="form-select"
+              [(ngModel)]="sortBy"
+              (change)="onSortChange()">
+              <option value="name">Sort by Name (A-Z)</option>
+              <option value="name-desc">Sort by Name (Z-A)</option>
+            </select>
+            @if (isFiltered) {
+              <button 
+                class="btn btn-clear-filter ms-2"
+                (click)="clearFilters()">
+                <i class="fas fa-times me-1"></i>Clear
+              </button>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results Section -->
+  <div class="results-section">
+    <div class="container">
+      <!-- Results Header -->
+      <div class="results-header mb-4">
+        @if (loading) {
+          <h3 class="mb-0">Loading recipes...</h3>
+        } @else if (allRecipes.length > 0) {
+          <h3 class="mb-0">
+            Showing {{ paginatedRecipes.length }} of {{ totalRecipes }} recipe(s)
+          </h3>
+        }
+        @if (!loading && allRecipes.length > 0 && totalPages > 1) {
+          <div class="pagination-info">
+            Page {{ currentPage }} of {{ totalPages }}
+          </div>
+        }
+      </div>
+
+      <!-- Recipe List -->
+      <app-recipe-list 
+          [recipes]="paginatedRecipes"
+          [loading]="loading"
+          [error]="error"
+          [currentPage]="currentPage"
+          [totalPages]="totalPages"
+          (pageChanged)="onPageChange($event)"
+          (retry)="loadRecipes()"
+          theme="dark">
+      </app-recipe-list>
+    </div>
+  </div>
+</div>

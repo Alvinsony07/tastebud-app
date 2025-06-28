@@ -1,1 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* 2. Define CSS variables for our color scheme */
+:root {
+  --background-dark: #0d1117; /* Very dark blue-gray, almost black */
+  --background-light: #161b22; /* Slightly lighter for cards/surfaces */
+  --border-color: #30363d;     /* Subtle border color */
+  --text-primary: #c9d1d9;      /* Main text color (light gray) */
+  --text-secondary: #8b949e;   /* Muted text color */
+  --text-heading: #f0f6fc;      /* Bright white for headings */
+
+  /* --- THE COLOR CHANGE IS HERE --- */
+  --accent-primary: #f91616;   /* This is the new primary orange color */
+  --accent-hover: #3ca2fb;     /* A slightly lighter orange for hover effects */
+}
+
+/* 3. Apply base styles to the body */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background-dark);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 4. Remove default Bootstrap focus glow and add our own */
+a:focus, button:focus, input:focus, .form-control:focus, .form-select:focus {
+  outline: none !important;
+  /* Updated the focus glow to match the new orange theme */
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.4) !important;
+}
+
+/* 5. Style scrollbar to match the dark theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background-dark);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 10px;
+  border: 2px solid var(--background-dark);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-secondary);
+}

@@ -1,0 +1,41 @@
+<div class="recipe-card" (click)="viewRecipe()">
+  <div class="recipe-image-container">
+    <img [src]="recipe.strMealThumb" [alt]="recipe.strMeal" class="recipe-card-img">
+    <span class="category-badge">{{ recipe.strCategory }}</span>
+    <button
+      class="favorite-btn"
+      [class.favorited]="isFavorited"
+      (click)="toggleFavorite($event)"
+      title="Add to favorites">
+      <i class="fas fa-heart"></i>
+    </button>
+  </div>
+
+  <div class="recipe-card-body">
+    <h5 class="recipe-title">{{ recipe.strMeal }}</h5>
+
+    @if (recipe.strArea) {
+      <div class="recipe-meta">
+        <span class="recipe-area">
+          <i class="fas fa-globe me-1"></i>{{ recipe.strArea }}
+        </span>
+      </div>
+    }
+
+    <div class="recipe-rating">
+      @for (star of [1,2,3,4,5]; track star) {
+        <i class="fas fa-star"></i>
+      }
+      <span class="rating-text ms-2">{{ getRandomRating() }}/5</span>
+    </div>
+
+    <div class="recipe-actions">
+      <button class="btn btn-primary" (click)="viewRecipe()">
+        <i class="fas fa-eye me-1"></i>View Recipe
+      </button>
+      <button class="btn btn-outline-secondary" (click)="shareRecipe($event)">
+        <i class="fas fa-share me-1"></i>Share
+      </button>
+    </div>
+  </div>
+</div>

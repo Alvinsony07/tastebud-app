@@ -1,0 +1,22 @@
+<div class="search-container" [class.dark-theme]="theme === 'dark'">
+  <div class="search-input-group">
+    <i class="fas fa-search search-icon"></i>
+    <input
+      #searchInput
+      type="text"
+      class="search-input"
+      placeholder="Search recipes..."
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="onQueryChanged($event)"
+      (keyup.enter)="onSearch()"
+      [attr.aria-label]="'Search for recipes'">
+    @if (searchQuery) {
+      <button class="clear-btn" (click)="clearSearch()" title="Clear search">
+        <i class="fas fa-times"></i>
+      </button>
+    }
+  </div>
+  <button class="btn search-btn" (click)="onSearch()">
+    Search
+  </button>
+</div>

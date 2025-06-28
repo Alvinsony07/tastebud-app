@@ -1,0 +1,104 @@
+<div class="recipe-details-page">
+  @if (loading) {
+    <div class="loading-container">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="loading-text">Fetching your recipe...</p>
+    </div>
+  } @else if (error) {
+    <div class="error-container">
+        <i class="fas fa-exclamation-triangle"></i>
+        <h3>Recipe Not Found</h3>
+        <p>{{ error }}</p>
+        <button class="btn btn-cta" (click)="goBack()">
+          <i class="fas fa-arrow-left me-2"></i>Go Back
+        </button>
+    </div>
+  } @else if (recipe) {
+    <!-- Recipe Hero -->
+    <section class="recipe-hero" [style.background-image]="'url(' + recipe.strMealThumb + ')'">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+          <div class="recipe-badges">
+            <span class="badge category-badge">{{ recipe.strCategory }}</span>
+            <span class="badge area-badge">{{ recipe.strArea }}</span>
+          </div>
+          <h1 class="recipe-title">{{ recipe.strMeal }}</h1>
+      </div>
+    </section>
+
+    <!-- Recipe Content -->
+    <div class="recipe-main-content">
+      <div class="container">
+        <div class="row">
+          <!-- Main Content Column -->
+          <div class="col-lg-8">
+            <!-- Ingredients -->
+            <div class="content-card">
+              <h3 class="section-title">
+                <i class="fas fa-list-ul"></i>Ingredients
+              </h3>
+              <div class="ingredients-list">
+                @for (ingredient of ingredients; track ingredient.name) {
+                  <div class="ingredient-item">
+                    <input type="checkbox" [id]="'ingredient-' + $index" class="form-check-input">
+                    <label [for]="'ingredient-' + $index" class="form-check-label">
+                      <strong>{{ ingredient.measure }}</strong> {{ ingredient.name }}
+                    </label>
+                  </div>
+                }
+              </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="content-card">
+              <h3 class="section-title">
+                <i class="fas fa-clipboard-list"></i>Instructions
+              </h3>
+              <div class="instructions-list">
+                @for (instruction of instructions; track $index) {
+                  <div class="instruction-step">
+                    <div class="step-number">{{ $index + 1 }}</div>
+                    <div class="step-content">{{ instruction }}</div>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Column -->
+          <div class="col-lg-4">
+            <div class="sidebar">
+              <div class="content-card">
+                 <img [src]="recipe.strMealThumb" [alt]="recipe.strMeal" class="recipe-image">
+                 <div class="p-3">
+                    <button class="btn btn-cta w-100 mb-2" [class.favorited]="isFavorite" (click)="toggleFavorite()">
+                      <i [class]="isFavorite ? 'fas fa-heart' : 'far fa-heart'"></i>
+                      {{ isFavorite ? 'Favorited' : 'Add to Favorites' }}
+                    </button>
+                    @if(recipe.strYoutube) {
+                      <a [href]="recipe.strYoutube" target="_blank" rel="noopener noreferrer" class="btn btn-video w-100">
+                        <i class="fab fa-youtube me-2"></i>Watch on YouTube
+                      </a>
+                    }
+                 </div>
+              </div>
+              <div class="content-card">
+                <h4 class="section-title px-3 pt-3">Quick Info</h4>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><span>Category</span> <strong>{{recipe.strCategory}}</strong></li>
+                    <li class="list-group-item"><span>Cuisine</span> <strong>{{recipe.strArea}}</strong></li>
+                    <li class="list-group-item"><span>Difficulty</span> <strong>{{getDifficulty()}}</strong></li>
+                    @if(getTags().length > 0){
+                      <li class="list-group-item"><span>Tags</span> <div class="tag-container">@for(tag of getTags(); track tag){<span class="tag">{{tag}}</span>}</div></li>
+                    }
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

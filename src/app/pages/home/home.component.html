@@ -1,0 +1,123 @@
+<!-- File: src/app/pages/home/home.component.html -->
+<!-- Removed the (loadAll) event emitter which was causing an error -->
+<!-- Hero Section -->
+<app-hero></app-hero>
+
+<!-- Featured Recipes Section -->
+<section id="featured-section" class="featured-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Featured Recipes</h2>
+      <p class="section-subtitle">Discover our handpicked collection of amazing recipes</p>
+    </div>
+    
+    <app-recipe-list 
+      [recipes]="featuredRecipes" 
+      [loading]="featuredLoading"
+      [error]="featuredError"
+      (retry)="loadFeaturedRecipes()">
+    </app-recipe-list>
+  </div>
+</section>
+
+<!-- Categories Section -->
+<section class="categories-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Browse by Category</h2>
+      <p class="section-subtitle">Find recipes that match your taste</p>
+    </div>
+    
+    <div class="categories-grid">
+      <div class="row">
+        @for (category of popularCategories; track category.idCategory) {
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="category-card" (click)="browseCategory(category.strCategory)">
+              <div class="category-image">
+                <img [src]="category.strCategoryThumb" [alt]="category.strCategory" class="category-img">
+                <div class="category-overlay">
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+              </div>
+              <div class="category-info">
+                <h5 class="category-name">{{ category.strCategory }}</h5>
+                <p class="category-description">{{ truncateText(category.strCategoryDescription, 80) }}</p>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+    
+    <div class="text-center mt-4">
+      <a class="btn btn-outline-primary btn-lg" routerLink="/recipes">
+        <i class="fas fa-th-large me-2"></i>View All Categories
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="stats-section">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <div class="stat-number">{{ totalRecipes }}+</div>
+          <div class="stat-label">Delicious Recipes</div>
+        </div>
+      </div>
+      
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <div class="stat-number">{{ totalCountries }}+</div>
+          <div class="stat-label">Countries Covered</div>
+        </div>
+      </div>
+      
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <div class="stat-number">{{ favoriteCount }}</div>
+          <div class="stat-label">Your Favorites</div>
+        </div>
+      </div>
+      
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="stat-number">4.8</div>
+          <div class="stat-label">Average Rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2 class="cta-title">Ready to Start Cooking?</h2>
+      <p class="cta-subtitle">Join thousands of home chefs discovering amazing recipes every day</p>
+      <div class="cta-buttons">
+        <a class="btn btn-light btn-lg me-3" routerLink="/recipes">
+          <i class="fas fa-search me-2"></i>Browse Recipes
+        </a>
+        <button class="btn btn-outline-light btn-lg" (click)="scrollToTop()">
+          <i class="fas fa-arrow-up me-2"></i>Back to Top
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
